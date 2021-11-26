@@ -1,0 +1,39 @@
+<p>Catalogues</p>
+
+<h3>Ajouter une voiture</h3>
+<form>
+
+</form>
+
+<h3>Lister les voitures</h3>
+<ul>
+    <li class="container allImg">
+      <div class="img-thumbnail thumb" *ngFor="let voiture of listVoiture">
+        <figure class="figure d-flex flex-column imgVoiture">
+          <img src="" class="figure-img img-fluid rounded" alt="imageVoiture">
+          <figcaption class="figure-caption text-center">
+            <h5>{{voiture.modeleIntern.nomMarque}}</h5>
+            <h6>{{voiture.modeleIntern.nom}}</h6>
+          </figcaption>
+          <figcaption class="figure-caption text-center">
+            <div>
+              <small *ngIf="voiture.manuelle;else elseBlock" class="text-muted">Manuelle</small>
+              <ng-template #elseBlock><small class="text-muted">Auto</small></ng-template>
+            </div>
+            <div>
+              <small class="text-muted">{{voiture.couleur}}</small>
+            </div>
+            <div>
+              <small class="text-muted">{{voiture.carburant}}</small>
+            </div>
+          </figcaption>
+        </figure>
+        <div class="caddieDiv" >
+          <p>{{voiture.prix | currency:'EUR' }}</p>
+          <button class="btn btn-success" >
+            <i class="fa fas fa-gas-pump cartShop" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </li>
+</ul>

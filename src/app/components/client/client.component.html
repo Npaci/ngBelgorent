@@ -1,0 +1,15 @@
+<p>Tous les utilisateurs</p>
+<ul>
+  <li class="container allImg">
+    <div class="img-thumbnail thumb imgUser" *ngFor="let client of listClients">
+      <figure class="figure d-flex flex-column">
+        <img src="" class="figure-img img-fluid rounded" alt="imageUser">
+        <figcaption class="figure-caption text-center">
+          <h5>{{client.nom}} {{client.prenom}}</h5>
+          <h6 *ngIf="calculAge(client.date_naiss) != -1;else elseBlock">{{calculAge(client.date_naiss)}} ans</h6>
+          <ng-template #elseBlock><h6>Date de naissance inconnue</h6></ng-template>
+        </figcaption>
+      </figure>
+    </div>
+  </li>
+</ul>

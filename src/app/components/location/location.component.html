@@ -1,0 +1,22 @@
+<h3>Lister les locations</h3>
+<ul>
+  <li class="container allImg">
+    <div class="img-thumbnail thumb" *ngFor="let location of listLocations">
+      <figure class="figure d-flex flex-column imgVoiture">
+        <img src="" class="figure-img img-fluid rounded" alt="imageVoiture">
+        <figcaption class="figure-caption text-center">
+          <h5>{{location.clientIntern.nom}} {{location.clientIntern.prenom}}</h5>
+          <h6>{{location.voitureIntern.marque}} {{location.voitureIntern.modele}}</h6>
+        </figcaption>
+        <figcaption class="figure-caption text-center">
+          <div>
+            <small class="text-muted"><span class="location-detail">Enlèv.: </span>{{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm:ss'}}</small>
+          </div>
+          <div>
+            <small class="text-muted"><span class="location-detail">Retour: </span>{{location.lieu_arr}} le {{location.date_fin | date:'dd.LL.y à HH:mm:ss'}}</small>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </li>
+</ul>

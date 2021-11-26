@@ -1,0 +1,30 @@
+.voiture-detail {
+  font-weight: bold;
+}
+
+.allImg {
+  padding: 12px 12px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  width: 80%;
+}
+
+.imgUser{
+  width: 25%;
+  padding: 8px 8px;
+}
+
+figure {
+  margin: 0;
+}
+
+.thumb {
+  margin: 10px 10px;
+}
+
+p {
+  font-family: PT Sans Narrow, sans-serif;
+  font-size: larger;
+  margin: 0;
+}
