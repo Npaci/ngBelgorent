@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ClientService} from "../../services/client.service";
 import {Client} from "../../models/client";
 import {Router} from "@angular/router";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-client',
@@ -10,16 +11,21 @@ import {Router} from "@angular/router";
 })
 export class ClientComponent implements OnInit {
 
+  rechDisabled: boolean = false;
   listClients: Client[] = [];
-  constructor(private cServ: ClientService, private router: Router) { }
+  userForm: FormGroup;
+
+  constructor(builder: FormBuilder, private cServ: ClientService, private router: Router) {
+    this.userForm = builder.group({
+      'nom': new FormControl(null, [Validators.required]),
+      'prenom': new FormControl(null, [Validators.required]),
+      'date_naiss': new FormControl(null, [Validators.required]),
+      //'image': new FormControl()
+    });
+  }
 
   ngOnInit(): void {
-    this.cServ.getAll().subscribe(
-      {
-        next: clients => this.listClients = clients,
-        error: err => {this.router.navigate(["page500"])}
-      }
-    )
+
   }
 
   public calculAge(date_naiss: string): number
@@ -33,4 +39,34 @@ export class ClientComponent implements OnInit {
     return -1;
   }
 
+  getAllUsers() {
+    this.rechDisabled = true;
+    this.cServ.getAll().subscribe(
+      {
+        next: clients => this.listClients = clients,
+        error: err => {this.router.navigate(["page500"])},
+        complete: () => this.rechDisabled = false
+      }
+    )
+  }
+
+  onSubmit() {
+    if (this.userForm.valid){
+      const v = this.userForm.value;
+      this.cServ.postUser({
+        id_client: 0,
+        nom: v.nom,
+        prenom: v.prenom,
+        date_naiss: v.date_naiss,
+        listLocations: []
+      }).subscribe({
+        next: console.log,
+        error: console.error
+      })
+    }
+  }
+
+  // oneOnchange( : Event) {
+  //
+  // }
 }

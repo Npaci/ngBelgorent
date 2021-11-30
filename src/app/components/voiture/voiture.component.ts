@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {VoitureService} from "../../services/voiture.service";
 import {Voiture} from "../../models/voiture";
 import {Router} from "@angular/router";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-voiture',
@@ -11,7 +12,8 @@ import {Router} from "@angular/router";
 export class VoitureComponent implements OnInit {
 
   listVoiture: Voiture[] = [];
-  constructor(private vServ: VoitureService, private router: Router) { }
+
+  constructor(private vServ: VoitureService, private router: Router) {}
 
   ngOnInit(): void {
     this.vServ.getAll().subscribe(

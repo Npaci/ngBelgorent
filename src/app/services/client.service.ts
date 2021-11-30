@@ -16,4 +16,8 @@ export class ClientService {
   getAll() : Observable<[Client]> {
     return this._client.get(this._apiUrl) as Observable<[Client]>;
   }
+
+  public postUser(toPost: Client): Observable<Client> {
+    return this._client.post(this._apiUrl, toPost) as Observable<Client>;
+  }
 }

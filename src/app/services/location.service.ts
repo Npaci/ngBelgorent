@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Location} from "../models/location";
+import {Client} from "../models/client";
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class LocationService {
 
   getAll() : Observable<[Location]> {
     return this._client.get(this._apiUrl) as Observable<[Location]>;
+  }
+
+  public postRent(toPost: Location): Observable<Location> {
+    return this._client.post(this._apiUrl, toPost) as Observable<Location>;
   }
 }

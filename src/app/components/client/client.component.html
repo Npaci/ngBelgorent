@@ -1,4 +1,25 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="form-group mt-3 mb-3">
+    <label for="input-name">Nom</label>
+    <input type="text" class="form-control" id="input-name" placeholder="Nom" formControlName="nom">
+  </div>
+  <div class="form-group mb-3">
+    <label for="input-firstname">Prénom</label>
+    <input type="text" class="form-control" id="input-firstname" placeholder="Prénom" formControlName="prenom">
+  </div>
+  <div class="form-group mb-3">
+    <label for="input-birthday">Date de naissance</label>
+    <input type="date" class="form-control" id="input-birthday" placeholder="jj-mm-aaaa" formControlName="date_naiss">
+  </div>
+<!--  <div class="form-group mb-3">-->
+<!--    <label for="input-img">image perso</label>-->
+<!--    <input type="file" class="form-control" id="input-img" placeholder="jj-mm-aaaa" formControlName="image" (change)="oneOnchange($event)">-->
+<!--  </div>-->
+  <button type="submit" class="btn btn-primary">Confirmer</button>
+</form>
+
 <p>Tous les utilisateurs</p>
+<button class="btn btn-success" (click)="getAllUsers()" [disabled]="rechDisabled === true" >Chercher</button>
 <ul>
   <li class="container allImg">
     <div class="img-thumbnail thumb imgUser" *ngFor="let client of listClients">

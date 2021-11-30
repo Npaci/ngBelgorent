@@ -11,6 +11,7 @@ import { LocationComponent } from './components/location/location.component';
 import { Page500Component } from './components/page500/page500.component';
 import { ClientComponent } from './components/client/client.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { StepslocationComponent } from './components/stepslocation/stepslocation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AccueilComponent } from './components/accueil/accueil.component';
     LocationComponent,
     Page500Component,
     ClientComponent,
-    AccueilComponent
+    AccueilComponent,
+    StepslocationComponent
   ],
   imports: [
     BrowserModule,

@@ -7,13 +7,14 @@ import {Page500Component} from "./components/page500/page500.component";
 import {AppComponent} from "./app.component";
 import {ClientComponent} from "./components/client/client.component";
 import {AccueilComponent} from "./components/accueil/accueil.component";
+import {StepslocationComponent} from "./components/stepslocation/stepslocation.component";
 
 const routes: Routes = [
-  // {path: " ", component: AppComponent},
   {path: "accueil", component: AccueilComponent},
-  {path: " ", redirectTo: "accueil"},
+  // {path: " ", redirectTo: "accueil"},
   {path: "voiture", component: VoitureComponent},
   {path: "location", component: LocationComponent},
+  {path: "stepslocation", component: StepslocationComponent},
   {path: "client", component: ClientComponent},
   {path: "page500", component: Page500Component},
   {path: "404", component: Page404Component},

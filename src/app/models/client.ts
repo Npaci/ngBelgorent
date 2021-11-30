@@ -11,4 +11,6 @@ export interface Client {
     date_debut: string;
     date_fin: string;
   }[]
+
+  // image: File;
 }
