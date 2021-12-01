@@ -1,20 +1,22 @@
 import {Modele} from "./modele";
+import {ModeleForm} from "./modele-form";
 
 export interface Voiture {
   id_voiture: number;
   prix: number;
   couleur: string;
   carburant: string;
-  kilometre: string;
-  manuelle: string;
+  kilometre: number;
+  manuelle: boolean;
   typev: string;
   etat: string;
 
-  modeleIntern: {
-    id: number,
-    nom: string,
-    nomMarque: string
-  }
+  modeleIntern: ModeleForm,
+  //   {
+  //   id: number,
+  //   nom: string,
+  //   nomMarque: string
+  // }
 
   listOptions: {
     id: number,
@@ -28,7 +30,5 @@ export interface Voiture {
     lieu_arr: string;
     date_debut: string;
     date_fin: string;
-  }[]
-
-  ;
+  }[];
 }

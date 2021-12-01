@@ -5,14 +5,14 @@ export interface Location {
   date_debut: string;
   date_fin: string;
 
-  clientIntern: {
+  client: {
     id_client: number;
     nom: string;
     prenom: string;
     date_naiss: string;
   };
 
-  voitureIntern: {
+  voiture: {
     id_voiture: number;
     prix: number;
     couleur: string;
