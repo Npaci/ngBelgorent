@@ -2,7 +2,7 @@ import {Voiture} from "./voiture";
 import {VoitureForm} from "./voiture-form";
 import {Client} from "./client";
 
-export interface LocationForm {
+export interface RentalForm {
   id_location: number;
   lieu_dep: string;
   lieu_arr: string;

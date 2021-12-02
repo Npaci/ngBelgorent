@@ -1,4 +1,4 @@
-export interface Location {
+export interface Rental {
   id_location: number;
   lieu_dep: string;
   lieu_arr: string;

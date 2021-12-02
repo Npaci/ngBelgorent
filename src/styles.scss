@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
 body {
   padding: 1.1em;
+}
+
+html { height: 100%; }
+body {
+  font-family: PT Sans Narrow, sans-serif;
 }

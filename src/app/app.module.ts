@@ -11,7 +11,10 @@ import { LocationComponent } from './components/location/location.component';
 import { Page500Component } from './components/page500/page500.component';
 import { ClientComponent } from './components/client/client.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
-import { StepslocationComponent } from './components/stepslocation/stepslocation.component';
+import { RentalStepsComponent } from './components/rentalSteps/rentalSteps.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatStepperModule} from "@angular/material/stepper";
+import { AddNewcarComponent } from './components/add-newcar/add-newcar.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,16 @@ import { StepslocationComponent } from './components/stepslocation/stepslocation
     Page500Component,
     ClientComponent,
     AccueilComponent,
-    StepslocationComponent
+    RentalStepsComponent,
+    AddNewcarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

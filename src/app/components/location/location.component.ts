@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LocationService} from "../../services/location.service";
-import {Location} from "../../models/location";
+import {RentalService} from "../../services/rental.service";
+import {Rental} from "../../models/rental";
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,8 +10,8 @@ import {Router} from "@angular/router";
 })
 export class LocationComponent implements OnInit {
 
-  listLocations: Location[] = [];
-  constructor(private lServ: LocationService, private router: Router) { }
+  listLocations: Rental[] = [];
+  constructor(private lServ: RentalService, private router: Router) { }
 
   ngOnInit(): void {
     this.lServ.getAll().subscribe(
