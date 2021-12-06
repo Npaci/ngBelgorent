@@ -1,5 +1,4 @@
 export interface ModeleForm {
-  id: number,
-  nom: string,
-  nomMarque: string
+  id_modele: number,
+  nom: string
 }

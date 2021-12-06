@@ -11,12 +11,11 @@ export interface Voiture {
   typev: string;
   etat: string;
 
-  modeleIntern: ModeleForm,
-  //   {
-  //   id: number,
-  //   nom: string,
-  //   nomMarque: string
-  // }
+  modeleIntern: {
+    id_modele: number,
+    nom: string,
+    nomMarque: string
+  }
 
   listOptions: {
     id: number,
