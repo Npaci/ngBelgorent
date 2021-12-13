@@ -10,6 +10,7 @@ export interface Voiture {
   manuelle: boolean;
   typev: string;
   etat: string;
+  image: string;
 
   modeleIntern: {
     id_modele: number,

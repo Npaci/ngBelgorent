@@ -15,6 +15,7 @@ import { RentalStepsComponent } from './components/rentalSteps/rentalSteps.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatStepperModule} from "@angular/material/stepper";
 import { AddNewcarComponent } from './components/add-newcar/add-newcar.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AddNewcarComponent } from './components/add-newcar/add-newcar.component
     ClientComponent,
     AccueilComponent,
     RentalStepsComponent,
-    AddNewcarComponent
+    AddNewcarComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

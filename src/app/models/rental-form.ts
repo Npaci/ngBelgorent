@@ -1,6 +1,7 @@
 import {Voiture} from "./voiture";
 import {VoitureForm} from "./voiture-form";
 import {Client} from "./client";
+import {ClientForm} from "./client-form";
 
 export interface RentalForm {
   id_location: number;
@@ -9,7 +10,7 @@ export interface RentalForm {
   date_debut: string;
   date_fin: string;
 
-  client: Client;
+  client: ClientForm;
   //   {
   //   id_client: number;
   //   nom: string;

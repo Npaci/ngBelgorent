@@ -10,7 +10,8 @@ export interface VoitureForm {
   kilometre: number;
   manuelle: boolean;
   type: string;
-  etat: boolean;
+  etat: string;
+  image: string;
 
   // listLocations: {}[];
 

@@ -1,10 +1,10 @@
-export interface Client {
+export interface ClientForm {
   id: number;
   nom: string;
   prenom: string;
   username: string;
+  password: string;
   date_naiss: string;
-  roles: string[];
 
   listLocations: {
     id: number;
@@ -13,6 +13,4 @@ export interface Client {
     date_debut: string;
     date_fin: string;
   }[]
-
-  // image: File;
 }

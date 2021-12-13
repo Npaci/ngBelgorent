@@ -11,14 +11,18 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ClientComponent implements OnInit {
 
+  notAdult: boolean;
   rechDisabled: boolean = false;
   listClients: Client[] = [];
   userForm: FormGroup;
 
   constructor(builder: FormBuilder, private cServ: ClientService, private router: Router) {
+    this.notAdult = false;
     this.userForm = builder.group({
       'nom': new FormControl(null, [Validators.required]),
       'prenom': new FormControl(null, [Validators.required]),
+      'username': new FormControl(null, [Validators.required]),
+      'password': new FormControl(null, [Validators.required]),
       'date_naiss': new FormControl(null, [Validators.required]),
       //'image': new FormControl()
     });
@@ -54,9 +58,11 @@ export class ClientComponent implements OnInit {
     if (this.userForm.valid){
       const v = this.userForm.value;
       this.cServ.postUser({
-        id_client: 0,
+        id: 0,
         nom: v.nom,
         prenom: v.prenom,
+        username: v.username,
+        password: v.password,
         date_naiss: v.date_naiss,
         listLocations: []
       }).subscribe({
@@ -66,7 +72,10 @@ export class ClientComponent implements OnInit {
     }
   }
 
-  // oneOnchange( : Event) {
-  //
-  // }
+  onChangeDate() {
+    if (this.calculAge(this.userForm.value.date_naiss) < 18)
+      this.notAdult = true;
+    else
+      this.notAdult = false;
+  }
 }

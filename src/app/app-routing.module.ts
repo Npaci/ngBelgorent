@@ -9,11 +9,13 @@ import {ClientComponent} from "./components/client/client.component";
 import {AccueilComponent} from "./components/accueil/accueil.component";
 import {RentalStepsComponent} from "./components/rentalSteps/rentalSteps.component";
 import {AddNewcarComponent} from "./components/add-newcar/add-newcar.component";
+import {FilterComponent} from "./components/filter/filter.component";
 
 const routes: Routes = [
+  {path: "", redirectTo: "accueil", pathMatch: "full"},
   {path: "accueil", component: AccueilComponent},
-  // {path: " ", redirectTo: "accueil"},
   {path: "voiture", component: VoitureComponent},
+  {path: "filter", component: FilterComponent},
   {path: "location", component: LocationComponent},
   {path: "rentalSteps", component: RentalStepsComponent},
   {path: "addnewcar", component: AddNewcarComponent},
