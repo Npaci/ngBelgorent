@@ -18,6 +18,7 @@ import { AddNewcarComponent } from './components/add-newcar/add-newcar.component
 import { FilterComponent } from './components/filter/filter.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SignupComponent } from './components/signup/signup.component';
     AddNewcarComponent,
     FilterComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
