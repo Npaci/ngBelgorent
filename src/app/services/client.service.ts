@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Rental} from "../models/rental";
 import {Client} from "../models/client";
 import {ClientForm} from "../models/client-form";
 
@@ -10,7 +9,7 @@ import {ClientForm} from "../models/client-form";
 })
 export class ClientService {
 
-  private _apiUrl = "http://localhost:8080/user";
+  private _apiUrl = "http://localhost:8080/client";
 
   constructor(private _client: HttpClient) { }
 

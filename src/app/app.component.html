@@ -1,33 +1,47 @@
 <nav class="navbar navbar-expand-lg navbar-secondary bg-dark padNav">
-  <a class="navbar-brand" routerLink="/">BelgoRent</a>
+  <div>
+    <a routerLink="/">
+      <img src="assets/images/belgorentLogo.png" class="figure-img img-fluid rounded" style="height: 50px; width: 200px;" alt="logoSite">
+    </a>
+  </div>
 <!--  <button class="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--    <span class="navbar-toggler-icon ">R</span>-->
 <!--  </button>-->
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active fw-bold fs-6">
-        <a class="nav-link" routerLink="/accueil">Accueil</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/client">Utilisateurs</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/voiture">Toutes Voitures</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/location">Toutes Locations</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/rentalSteps">Nouvelle location</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/addnewcar">Nouveau véhicule</a>
-      </li>
-      <li class="nav-item fw-bold fs-6">
-        <a class="nav-link" routerLink="/filter">Recherche</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav ps-5">
+        <li class="nav-item active fw-bold fs-6">
+          <a class="nav-link" routerLink="/accueil">Accueil</a>
+        </li>
+<!--        <li class="nav-item fw-bold fs-6">-->
+<!--          <a class="nav-link" routerLink="/client" *ngIf="isConnected()">Utilisateurs</a>-->
+<!--        </li>-->
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link" routerLink="/voiture" *ngIf="isConnected()">Toutes Voitures</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link" routerLink="/location" *ngIf="isConnected()">Toutes Locations</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link" routerLink="/rentalSteps" *ngIf="isConnected() && isUser()">Nouvelle location</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link" routerLink="/addnewcar" *ngIf="isConnected() && isAdmin()">Nouveau véhicule</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link" routerLink="/filter">Recherche</a>
+        </li>
+      </ul>
+    </div>
+  <div class="p-lg-3">
+    <button class="btn btn-secondary text-capitalize" routerLink="/login" *ngIf="!isConnected()">Se Connecter</button>
+    <button class="btn btn-secondary text-capitalize" routerLink="/accueil" *ngIf="isConnected()" (click)="logout()">Se Deconnecter</button>
   </div>
 </nav>
 
 <router-outlet></router-outlet>
+
+<!--<div class="card-footer bg-dark padfooter">-->
+
+<!--</div>-->
+
+

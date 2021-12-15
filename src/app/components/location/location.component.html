@@ -1,22 +1,30 @@
 <h3>Lister les locations</h3>
-<ul>
-  <li class="container allImg">
-    <div class="img-thumbnail thumb" *ngFor="let location of listLocations">
-      <figure class="figure d-flex flex-column imgVoiture">
-        <img src="" class="figure-img img-fluid rounded" alt="imageVoiture">
-        <figcaption class="figure-caption text-center">
-          <h5>{{location.client.nom}} {{location.client.prenom}}</h5>
-          <h6>{{location.voiture.marque}} {{location.voiture.modele}}</h6>
-        </figcaption>
-        <figcaption class="figure-caption text-center">
-          <div>
-            <small class="text-muted"><span class="location-detail">Enlèv.: </span>{{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm:ss'}}</small>
+<div class="row justify-content-center windowHeight">
+  <div class="col-5 text-center p-0 mt-3 mb-2">
+    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+      <ul>
+        <li class="container allImg">
+          <div class="img-thumbnail thumb" *ngFor="let location of listLocations">
+            <figure class="figure d-flex flex-column imgVoiture">
+              <img src="" class="figure-img img-fluid rounded" alt="imageVoiture">
+              <figcaption class="figure-caption text-center">
+                <h5>{{location.client.nom}} {{location.client.prenom}}</h5>
+                <h6>{{location.voiture.marque}} {{location.voiture.modele}}</h6>
+              </figcaption>
+              <figcaption class="figure-caption text-center">
+                <div>
+                  <small class="text-muted"><span class="location-detail">Enlèv.: </span>{{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm:ss'}}</small>
+                </div>
+                <div>
+                  <small class="text-muted"><span class="location-detail">Retour: </span>{{location.lieu_arr}} le {{location.date_fin | date:'dd.LL.y à HH:mm:ss'}}</small>
+                </div>
+              </figcaption>
+            </figure>
           </div>
-          <div>
-            <small class="text-muted"><span class="location-detail">Retour: </span>{{location.lieu_arr}} le {{location.date_fin | date:'dd.LL.y à HH:mm:ss'}}</small>
-          </div>
-        </figcaption>
-      </figure>
+        </li>
+      </ul>
     </div>
-  </li>
-</ul>
+  </div>
+</div>
+
+

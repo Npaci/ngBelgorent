@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -7,10 +7,13 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
+
+  innerHeight: number;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   constructor(private _formBuilder: FormBuilder) {
+    this.innerHeight= window.innerHeight;
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });
