@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {FormBuilder} from "@angular/forms";
+import {ClientService} from "./services/client.service";
+import {Router} from "@angular/router";
+import {SessionService} from "./services/session.service";
 
 @Component({
   selector: 'app-root',
@@ -9,19 +13,14 @@ export class AppComponent {
   title = 'BelgoRent';
   displayLogin: string | null = "Se Connecter";
 
-  isConnected() {
-    return sessionStorage.getItem("connectedUser")
+  constructor(private sServ: SessionService) {}
+
+  isConnected(): boolean {
+    return this.sServ.isLogged()
   }
 
   logout() {
-    sessionStorage.clear()
-    // sessionStorage.removeItem("connectedUser");
-    // sessionStorage.removeItem("token");
-    // sessionStorage.removeItem("connectedId");
-    // sessionStorage.removeItem("connectedName");
-    // sessionStorage.removeItem("connectedFirstName");
-    // sessionStorage.removeItem("connectedBday");
-    // sessionStorage.removeItem("connectedRoles");
+    this.sServ.clear()
   }
 
   loginProfil() {
@@ -30,7 +29,7 @@ export class AppComponent {
 
   isAdmin() {
     if ( this.isConnected()) {
-      let roles = sessionStorage.getItem("connectedRoles");
+      let roles = this.sServ.getConnectedRoles();
       let splitted = roles == null ? null : roles.split(",", 2);
 
       if (splitted == null)
@@ -45,7 +44,7 @@ export class AppComponent {
 
   isUser() {
     if ( this.isConnected()) {
-      let roles = sessionStorage.getItem("connectedRoles");
+      let roles = this.sServ.getConnectedRoles();
       let splitted = roles == null ? null : roles.split(",", 2);
 
       if (splitted == null)

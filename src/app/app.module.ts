@@ -13,7 +13,6 @@ import { ClientComponent } from './components/client/client.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { RentalStepsComponent } from './components/rentalSteps/rentalSteps.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatStepperModule} from "@angular/material/stepper";
 import { AddNewcarComponent } from './components/add-newcar/add-newcar.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { LoginComponent } from './components/login/login.component';

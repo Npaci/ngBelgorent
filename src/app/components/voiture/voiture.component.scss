@@ -1,17 +1,11 @@
-input.ng-valid.ng-dirty {
-  border: 2px solid #F72E12;
-}
-
 .voiture-detail {
   font-weight: bold;
 }
 
 .allImg {
-  padding: 12px 12px;
   display: flex;
   flex-flow: row wrap;
-  align-items: flex-start;
-  width: 80%;
+  justify-content: space-between;
 }
 
 .caddieDiv {
@@ -29,20 +23,10 @@ input.ng-valid.ng-dirty {
   padding: 8px 8px;
 }
 
-figure {
-  margin: 0;
-}
-
 .thumb {
   margin: 10px 10px;
 }
 
-p {
+.card {
   font-family: PT Sans Narrow, sans-serif;
-  font-size: larger;
-  margin: 0;
-}
-
-.windowHeight {
-  height: 740px;
 }

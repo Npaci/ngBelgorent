@@ -19,6 +19,7 @@ export class RentalService {
   }
 
   public postRent(toPost: RentalForm): Observable<RentalForm> {
+    console.log(JSON.stringify(toPost))
     return this._client.post(this._apiUrl, toPost) as Observable<RentalForm>;
   }
 }
