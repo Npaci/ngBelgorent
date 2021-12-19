@@ -29,7 +29,7 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.getAllUsers();
   }
 
   public calculAge(date_naiss: string): number
@@ -52,31 +52,6 @@ export class ClientComponent implements OnInit {
         complete: () => this.rechDisabled = false
       }
     )
-  }
-
-  onSubmit() {
-    if (this.userForm.valid){
-      const v = this.userForm.value;
-      this.cServ.postUser({
-        id: 0,
-        nom: v.nom,
-        prenom: v.prenom,
-        username: v.username,
-        password: v.password,
-        date_naiss: v.date_naiss,
-        listLocations: []
-      }).subscribe({
-        next: console.log,
-        error: console.error
-      })
-    }
-  }
-
-  onChangeDate() {
-    if (this.calculAge(this.userForm.value.date_naiss) < 18)
-      this.notAdult = true;
-    else
-      this.notAdult = false;
   }
 }
 

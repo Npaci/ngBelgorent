@@ -11,25 +11,25 @@
     <div class="collapse navbar-collapse " id="navbarNav">
       <ul class="navbar-nav ps-3">
         <li class="nav-item active fw-bold fs-6">
-          <a class="nav-link" routerLink="/accueil">Accueil</a>
-        </li>
-<!--        <li class="nav-item fw-bold fs-6">-->
-<!--          <a class="nav-link" routerLink="/client" *ngIf="isConnected()">Utilisateurs</a>-->
-<!--        </li>-->
-        <li class="nav-item fw-bold fs-6">
-          <a class="nav-link" routerLink="/voiture" *ngIf="isConnected() && isAdmin()">Toutes Voitures</a>
+          <a class="nav-link sizeTab" routerLink="/accueil">Accueil</a>
         </li>
         <li class="nav-item fw-bold fs-6">
-          <a class="nav-link" routerLink="/location" *ngIf="isConnected() && isAdmin()">Toutes Locations</a>
+          <a class="nav-link sizeTab" routerLink="/client" *ngIf="isConnected() && isAdmin()">Utilisateurs</a>
         </li>
         <li class="nav-item fw-bold fs-6">
-          <a class="nav-link" routerLink="/rentalSteps" *ngIf="isConnected() && isUser()">Nouvelle location</a>
+          <a class="nav-link sizeTab" routerLink="/voiture" *ngIf="isConnected() && isAdmin()">Voitures</a>
         </li>
         <li class="nav-item fw-bold fs-6">
-          <a class="nav-link" routerLink="/addnewcar" *ngIf="isConnected() && isAdmin()">Nouveau véhicule</a>
+          <a class="nav-link sizeTab" routerLink="/location" *ngIf="isConnected() && isAdmin()">Locations</a>
         </li>
         <li class="nav-item fw-bold fs-6">
-          <a class="nav-link" routerLink="/filter">Recherche</a>
+          <a class="nav-link sizeTab" routerLink="/rentalSteps" *ngIf="isConnected() && isUser()">Nouvelle location</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link sizeTab" routerLink="/addnewcar" *ngIf="isConnected() && isAdmin()">Nouveau Véhicule</a>
+        </li>
+        <li class="nav-item fw-bold fs-6">
+          <a class="nav-link sizeTab" routerLink="/filter">Recherche</a>
         </li>
       </ul>
     </div>

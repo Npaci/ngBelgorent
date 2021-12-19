@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Voiture} from "../models/voiture";
 import {RentalForm} from "../models/rental-form";
 import {VoitureForm} from "../models/voiture-form";
 import {FilterComponent} from "../components/filter/filter.component";
 import {FilterForm} from "../models/filter-form";
+import {SessionService} from "./session.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class VoitureService {
 
   private _apiUrl = "http://localhost:8080/voiture";
 
-  constructor(private _client: HttpClient) { }
+  constructor(private _client: HttpClient, private sServ: SessionService) { }
 
   getAll() : Observable<Voiture[]> {
     return this._client.get(this._apiUrl) as Observable<Voiture[]>;
@@ -37,14 +38,20 @@ export class VoitureService {
   }
 
   getFiltered(filter: FilterForm) : Observable<Voiture[]> {
-    // const params = new HttpParams()
-    //   .set('FilterForm', filter as any);
-    console.log(">>>>>>>>>>> FilterForm: "+JSON.stringify(filter))
     return this._client.post(this._apiUrl+"/filter", filter) as Observable<Voiture[]>;
   }
 
   public postCar(toPost: VoitureForm): Observable<VoitureForm> {
-    //console.log("Va etre envoyé: " + JSON.stringify(toPost))
-    return this._client.post(this._apiUrl, toPost) as Observable<VoitureForm>;
+    const headers = new HttpHeaders({
+      Authorization: this.sServ.getApiKey()
+    });
+    return this._client.post(this._apiUrl, toPost, {headers}) as Observable<VoitureForm>;
+  }
+
+  public updateStatus(toUpdate: VoitureForm): Observable<VoitureForm> {
+    const headers = new HttpHeaders({
+      Authorization: this.sServ.getApiKey()
+    });
+    return this._client.patch(this._apiUrl+"/changestatus", toUpdate, {headers}) as Observable<VoitureForm>;
   }
 }

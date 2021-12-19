@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: "rentalSteps", component: RentalStepsComponent, canActivate: [LoggedGuard]},
   {path: "addnewcar", component: AddNewcarComponent, canActivate: [LoggedGuard]},
   {path: "modal", component: ModalComponent},
-  // {path: "client", component: ClientComponent, canActivate: [LoggedGuard]},
+  {path: "client", component: ClientComponent, canActivate: [LoggedGuard]},
   {path: "page500", component: Page500Component},
   {path: "404", component: Page404Component},
   {path: "**", redirectTo: "404"}

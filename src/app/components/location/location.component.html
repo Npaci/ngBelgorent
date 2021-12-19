@@ -1,30 +1,55 @@
-<h3>Lister les locations</h3>
-<div class="row justify-content-center windowHeight">
-  <div class="col-5 text-center p-0 mt-3 mb-2">
+<div class="d-flex justify-content-center">
+  <div class="col-9 text-center p-0 mt-3 mb-2">
     <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-      <ul>
-        <li class="container allImg">
-          <div class="img-thumbnail thumb" *ngFor="let location of listLocations">
+      <h2 id="titleform">Liste des locations</h2>
+        <div class="container allImg">
+          <div class="img-thumbnail thumb" [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'border-secondary border-4 blink_me' : ''"
+               *ngFor="let location of listLocations, let i = index">
             <figure class="figure d-flex flex-column imgVoiture">
-              <img src="" class="figure-img img-fluid rounded" alt="imageVoiture">
-              <figcaption class="figure-caption text-center">
-                <h5>{{location.client.nom}} {{location.client.prenom}}</h5>
-                <h6>{{location.voiture.marque}} {{location.voiture.modele}}</h6>
-              </figcaption>
-              <figcaption class="figure-caption text-center">
-                <div>
-                  <small class="text-muted"><span class="location-detail">Enlèv.: </span>{{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm:ss'}}</small>
-                </div>
-                <div>
-                  <small class="text-muted"><span class="location-detail">Retour: </span>{{location.lieu_arr}} le {{location.date_fin | date:'dd.LL.y à HH:mm:ss'}}</small>
-                </div>
+              <img src="{{location.voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">
+              <figcaption class="figure-caption text-center mb-2">
+                <h3>{{location.voiture.marque}} {{location.voiture.modele}}</h3>
+                <h1>{{location.client.nom}} {{location.client.prenom}}</h1> <span style="font-size: 15px;">[ID: {{location.client.username}}]</span>
               </figcaption>
             </figure>
+            <div class=" text-center">
+              <div class="col">
+                <span class="myFont">Enlèv.: </span>
+                {{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm'}}
+              </div>
+              <div>
+                <span class="myFont">Retour: </span>{{location.lieu_arr}} le <span [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'text-warning fw-bold' : ''">{{location.date_fin | date:'dd.LL.y à HH:mm'}}</span>
+              </div>
+            </div>
+            <button *ngIf="expired(location.date_fin, location.voiture.etat)"  class="btn btn-secondary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="changeStatus(i)">Changer état du véhicule</button>
           </div>
-        </li>
-      </ul>
+        </div>
     </div>
   </div>
 </div>
 
+<!-- Change status Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title myFont" id="statusModalLabel">Changement d'état</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="input-etat">Etat</label>
+        <select id="input-etat" [(ngModel)]="status">
+          <option value="PRET">Prêt</option>
+          <option value="PREPARATION">Préparation</option>
+          <option value="REPARATION">Réparation</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveStatus()">Enregister</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<app-modal *ngIf="showModal" [message]="endMessage" [title]="modalTitle" (closeModalEvent)="resetForm()"></app-modal>

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Rental} from "../models/rental";
 import {Client} from "../models/client";
 import {RentalForm} from "../models/rental-form";
+import {SessionService} from "./session.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,21 @@ export class RentalService {
 
   private _apiUrl = "http://localhost:8080/location";
 
-  constructor(private _client: HttpClient) { }
+  constructor(private _client: HttpClient, private sServ: SessionService) {
+  }
 
   getAll() : Observable<[Rental]> {
-    return this._client.get(this._apiUrl) as Observable<[Rental]>;
+    const headers = new HttpHeaders({
+      Authorization: this.sServ.getApiKey()
+    });
+    return this._client.get(this._apiUrl, {headers}) as Observable<[Rental]>;
   }
 
   public postRent(toPost: RentalForm): Observable<RentalForm> {
     console.log(JSON.stringify(toPost))
-    return this._client.post(this._apiUrl, toPost) as Observable<RentalForm>;
+    const headers = new HttpHeaders({
+      Authorization: this.sServ.getApiKey()
+    });
+    return this._client.post(this._apiUrl, toPost, {headers}) as Observable<RentalForm>;
   }
 }

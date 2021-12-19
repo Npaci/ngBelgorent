@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Client} from "../models/client";
 import {ClientForm} from "../models/client-form";
+import {SessionService} from "./session.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,16 @@ export class ClientService {
 
   private _apiUrl = "http://localhost:8080/client";
 
-  constructor(private _client: HttpClient) { }
+  constructor(private _client: HttpClient, private sServ: SessionService) { }
 
   getAll() : Observable<[Client]> {
-    return this._client.get(this._apiUrl) as Observable<[Client]>;
+    const headers = new HttpHeaders({
+      Authorization: this.sServ.getApiKey()
+    });
+    return this._client.get(this._apiUrl, {headers}) as Observable<[Client]>;
   }
 
   public postUser(toPost: ClientForm): Observable<ClientForm> {
-    console.log(">>>>>>>CLIENT à envoyer: "+JSON.stringify(toPost))
     return this._client.post(this._apiUrl, toPost) as Observable<ClientForm>;
   }
 }

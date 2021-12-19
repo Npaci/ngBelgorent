@@ -1,61 +1,67 @@
-<p>Catalogues</p>
-
-<h3>Lister les voitures</h3>
-<div class="row justify-content-center">
+<div class="d-flex justify-content-center">
   <div class="col-8 text-center p-0 mt-3 mb-2">
-    <div class="card pt-1 mt-3 mb-3">
-        <div class="container allImg">
-          <div class="img-thumbnail thumb col" *ngFor="let voiture of listVoiture">
-            <figure class="figure d-flex flex-column imgVoiture">
-              <img src="{{voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">
-              <figcaption class="figure-caption text-center">
-                <h5>{{voiture.modeleIntern.nomMarque}}</h5>
-                <h6>{{voiture.modeleIntern.nom}}</h6>
-              </figcaption>
-              <figcaption class="figure-caption text-center">
-                <div>
-                  <small *ngIf="voiture.manuelle;else elseBlock" class="text-muted">Manuelle</small>
-                  <ng-template #elseBlock><small class="text-muted">Auto</small></ng-template>
-                </div>
-                <div>
-                  <small class="text-muted">{{voiture.couleur}}</small>
-                </div>
-                <div>
-                  <small class="text-muted">{{voiture.carburant}}</small>
-                </div>
-              </figcaption>
-            </figure>
+    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+      <h2 id="titleform">Liste des voitures</h2>
 
-            <div class="caddieDiv" >
-              <h3 class="text-danger fw-bold">{{voiture.prix | currency:'EUR' }}/j</h3>
-              <button class="btn btn-success" >
-                <i class="fa fas fa-gas-pump cartShop" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        </div>
+      <table class="table table-striped border-start border-end border-top">
+        <thead>
+        <tr>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">Marque</th>
+          <th scope="col" class="text-center">Modèle</th>
+          <th scope="col" class="text-center">Couleur</th>
+          <th scope="col" class="text-center">Kilomètres</th>
+          <th scope="col" class="text-center">Type</th>
+          <th scope="col" class="text-center">Transmission</th>
+          <th scope="col" class="text-center">Etat</th>
+<!--          <th scope="col" class="text-center border-0 "></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let voiture of listVoiture; let i = index">
+          <td class="text-center align-middle">{{voiture.id_voiture}}</td>
+          <td class="text-center align-middle">{{voiture.modeleIntern.nomMarque}}</td>
+          <td class="text-center align-middle">{{voiture.modeleIntern.nom}}</td>
+          <td class="text-center align-middle">{{voiture.couleur}}</td>
+          <td class="text-center align-middle">{{voiture.kilometre}}</td>
+          <td class="text-center align-middle">{{voiture.typev}}</td>
+          <td class="text-center align-middle">
+            <div *ngIf="voiture.manuelle;else elseBlock">Manuelle</div>
+            <ng-template #elseBlock><div>Auto</div></ng-template>
+          </td>
+          <td class="text-center align-middle">{{voiture.etat}}</td>
+<!--          <td><button class="btn btn-primary" (click)="changeStatus(i)" data-bs-toggle="modal" data-bs-target="#statusModal">Changer l'état</button></td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--voiture.etat === 'LOUE' && !expired(i)-->
+<!--[ngClass]="voiture.etat === 'LOUE' && !expired(i) ? 'border-secondary border-4 blink_me' : ''"-->
+
+<!-- Change status Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title myFont" id="statusModalLabel">Changement d'état</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="input-etat">Etat</label>
+        <select id="input-etat" [(ngModel)]="status">
+          <option value="PRET">Prêt</option>
+          <option value="PREPARATION">Préparation</option>
+          <option value="REPARATION">Réparation</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveStatus()">Enregister</button>
+      </div>
     </div>
   </div>
 </div>
 
-
-<!--<figure class="figure d-flex flex-column imgVoiture">-->
-<!--  <img src="{{voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">-->
-<!--  <figcaption class="figure-caption text-center">-->
-<!--    <h5>{{voiture.modeleIntern.nomMarque}}</h5>-->
-<!--    <h6>{{voiture.modeleIntern.nom}}</h6>-->
-<!--  </figcaption>-->
-<!--  <figcaption class="figure-caption text-center">-->
-<!--    <div>-->
-<!--      <small *ngIf="voiture.manuelle;else elseBlock" class="text-muted">Manuelle</small>-->
-<!--      <ng-template #elseBlock><small class="text-muted">Auto</small></ng-template>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <small class="text-muted">{{voiture.couleur}}</small>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <small class="text-muted">{{voiture.carburant}}</small>-->
-<!--    </div>-->
-<!--  </figcaption>-->
-<!--</figure>-->
-
+<app-modal *ngIf="showModal" [message]="endMessage" [title]="modalTitle" (closeModalEvent)="resetForm()"></app-modal>

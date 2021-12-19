@@ -7,6 +7,7 @@ export interface Rental {
 
   client: {
     id_client: number;
+    username: string;
     nom: string;
     prenom: string;
     date_naiss: string;
@@ -21,6 +22,7 @@ export interface Rental {
     manuelle: string;
     typev: string;
     etat: string;
+    image: string;
     modele: string;
     marque: string;
   };
