@@ -1,7 +1,12 @@
 <div class="d-flex justify-content-center">
   <div class="col-8 text-center p-0 mt-3 mb-2">
-    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-      <h2 id="titleform">Liste des voitures</h2>
+    <div class="card px-0 pt-4 pb-0 mt-3 mb-0">
+      <h2 class="mb-2" id="titleform">Liste des voitures</h2>
+
+      <p class="mb-3">
+        <span *ngIf="listVoiture.length > 0 ;else elseBlock">{{listVoiture.length}} Voiture(s)</span>
+        <ng-template #elseBlock>Aucune Voiture</ng-template>
+      </p>
 
       <table class="table table-striped border-start border-end border-top">
         <thead>
@@ -30,7 +35,7 @@
             <ng-template #elseBlock><div>Auto</div></ng-template>
           </td>
           <td class="text-center align-middle">{{voiture.etat}}</td>
-<!--          <td><button class="btn btn-primary" (click)="changeStatus(i)" data-bs-toggle="modal" data-bs-target="#statusModal">Changer l'état</button></td>-->
+          <td><button [disabled]="voiture.etat === 'LOUE'" class="btn btn-primary" (click)="changeStatus(i)" data-bs-toggle="modal" data-bs-target="#statusModal">Changer l'état</button></td>
         </tr>
         </tbody>
       </table>

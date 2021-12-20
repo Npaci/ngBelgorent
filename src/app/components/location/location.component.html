@@ -1,9 +1,18 @@
 <div class="d-flex justify-content-center">
   <div class="col-9 text-center p-0 mt-3 mb-2">
-    <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+    <div class="card px-0 pt-4 pb-0 mt-3 mb-3 border-secondary">
       <h2 id="titleform">Liste des locations</h2>
+      <div class="d-flex justify-content-center mb-2">
+        <span class="bg-success greenline me-2 mt-2"></span>
+        <p class="me-4">En cours de location</p>
+        <span class="bg-secondary bigLine blink_me me-2 mt-2"></span>
+        <p class="me-4">A mettre à jour</p>
+        <span class="bg-secondary line me-2 mt-2"></span>
+        <p>Terminée</p>
+      </div>
+
         <div class="container allImg">
-          <div class="img-thumbnail thumb" [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'border-secondary border-4 blink_me' : ''"
+          <div class="img-thumbnail thumb" [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'border-secondary border-4 blink_me' : onGoing(location.date_fin) ? 'border-success border-4' : ''"
                *ngFor="let location of listLocations, let i = index">
             <figure class="figure d-flex flex-column imgVoiture">
               <img src="{{location.voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">

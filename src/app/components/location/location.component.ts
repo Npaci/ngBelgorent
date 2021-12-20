@@ -88,6 +88,10 @@ export class LocationComponent implements OnInit {
     this.selectedRent = index;
   }
 
+  onGoing(returnDate: string) {
+    return (new Date().valueOf() < new Date(returnDate).valueOf())
+  }
+
   resetForm() {
     this.showModal = false;
     this.endMessage = "";
