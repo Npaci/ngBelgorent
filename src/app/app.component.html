@@ -35,7 +35,7 @@
     </div>
   <div class="p-lg-3">
     <button class="btn btn-secondary text-capitalize" routerLink="/login" *ngIf="!isConnected()">Se Connecter</button>
-    <button class="btn btn-secondary text-capitalize" routerLink="/accueil" *ngIf="isConnected()" (click)="logout()">Se Deconnecter</button>
+    <button class="btn btn-secondary text-capitalize" routerLink="/login" *ngIf="isConnected()" (click)="logout()">Se Deconnecter</button>
   </div>
 </nav>
 

@@ -3,6 +3,7 @@ import {ModeleForm} from "./modele-form";
 
 export interface Voiture {
   id_voiture: number;
+  VIN: string;
   prix: number;
   couleur: string;
   carburant: string;
@@ -24,11 +25,12 @@ export interface Voiture {
     prix: number
   }[]
 
-  listLocations: {
+  locationInterns: {
     id: number;
     lieu_dep: string;
     lieu_arr: string;
     date_debut: string;
     date_fin: string;
+    etat: string;
   }[];
 }

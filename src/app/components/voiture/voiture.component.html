@@ -15,6 +15,7 @@
           <th scope="col" class="text-center">Marque</th>
           <th scope="col" class="text-center">Modèle</th>
           <th scope="col" class="text-center">Couleur</th>
+          <th scope="col" class="text-center">Prix/J</th>
           <th scope="col" class="text-center">Kilomètres</th>
           <th scope="col" class="text-center">Type</th>
           <th scope="col" class="text-center">Transmission</th>
@@ -28,6 +29,7 @@
           <td class="text-center align-middle">{{voiture.modeleIntern.nomMarque}}</td>
           <td class="text-center align-middle">{{voiture.modeleIntern.nom}}</td>
           <td class="text-center align-middle">{{voiture.couleur}}</td>
+          <td class="text-center align-middle">{{voiture.prix | currency:'EUR'}}</td>
           <td class="text-center align-middle">{{voiture.kilometre}}</td>
           <td class="text-center align-middle">{{voiture.typev}}</td>
           <td class="text-center align-middle">
@@ -35,7 +37,8 @@
             <ng-template #elseBlock><div>Auto</div></ng-template>
           </td>
           <td class="text-center align-middle">{{voiture.etat}}</td>
-          <td><button [disabled]="voiture.etat === 'LOUE'" class="btn btn-primary" (click)="changeStatus(i)" data-bs-toggle="modal" data-bs-target="#statusModal">Changer l'état</button></td>
+          <td><button [disabled]="voiture.etat === 'LOUE'" class="btn btn-primary" (click)="selectedIndex(i)" data-bs-toggle="modal" data-bs-target="#statusModal">Changer l'état</button></td>
+          <td><button [disabled]="voiture.etat === 'LOUE'" class="btn btn-danger" (click)="selectedIndex(i)" data-bs-toggle="modal" data-bs-target="#confirmationModal">Supprimer</button></td>
         </tr>
         </tbody>
       </table>
@@ -64,6 +67,25 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveStatus()">Enregister</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Change status Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title myFont" id="deleteModalLabel">Suppression</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Voulez-vous vraiment supprimer ce véhicule?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteCar()">Confirmer</button>
       </div>
     </div>
   </div>

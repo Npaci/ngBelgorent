@@ -2,37 +2,45 @@
   <div class="col-9 text-center p-0 mt-3 mb-2">
     <div class="card px-0 pt-4 pb-0 mt-3 mb-3 border-secondary">
       <h2 id="titleform">Liste des locations</h2>
+<!--      <p class="mb-3">-->
+<!--        <span >{{listLocations.length}} Location(s)</span>-->
+<!--        -->
+<!--      </p>-->
       <div class="d-flex justify-content-center mb-2">
-        <span class="bg-success greenline me-2 mt-2"></span>
-        <p class="me-4">En cours de location</p>
-        <span class="bg-secondary bigLine blink_me me-2 mt-2"></span>
-        <p class="me-4">A mettre à jour</p>
         <span class="bg-secondary line me-2 mt-2"></span>
-        <p>Terminée</p>
+        <p class="me-4">Terminée</p>
+        <span class="bg-success greenline me-2 mt-2"></span>
+        <p class="me-4">En cours</p>
+<!--        <span class="bg-secondary bigLine blink_me me-2 mt-2"></span>-->
+<!--        <p class="me-4">A mettre à jour</p>-->
+        <span class="bg-primary bigLine me-2 mt-2"></span>
+        <p>Prochainement</p>
       </div>
 
-        <div class="container allImg">
-          <div class="img-thumbnail thumb" [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'border-secondary border-4 blink_me' : onGoing(location.date_fin) ? 'border-success border-4' : ''"
-               *ngFor="let location of listLocations, let i = index">
-            <figure class="figure d-flex flex-column imgVoiture">
-              <img src="{{location.voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">
-              <figcaption class="figure-caption text-center mb-2">
-                <h3>{{location.voiture.marque}} {{location.voiture.modele}}</h3>
-                <h1>{{location.client.nom}} {{location.client.prenom}}</h1> <span style="font-size: 15px;">[ID: {{location.client.username}}]</span>
-              </figcaption>
-            </figure>
-            <div class=" text-center">
-              <div class="col">
-                <span class="myFont">Enlèv.: </span>
-                {{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm'}}
-              </div>
-              <div>
-                <span class="myFont">Retour: </span>{{location.lieu_arr}} le <span [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'text-warning fw-bold' : ''">{{location.date_fin | date:'dd.LL.y à HH:mm'}}</span>
-              </div>
+<!--      [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'border-secondary border-4 blink_me' : onGoing(location.date_fin) ? 'border-success border-4' : ''"-->
+      <div class="container allImg">
+        <div class="img-thumbnail thumb" [ngClass]="location.etat === 'PRESENT' ? 'border-success border-4' : location.etat === 'FUTURE' ? 'border-primary border-4' : ''"
+             *ngFor="let location of listLocations, let i = index">
+          <figure class="figure d-flex flex-column imgVoiture mb-4">
+            <img src="{{location.voiture.image}}" class="figure-img img-fluid rounded" alt="imageVoiture">
+            <figcaption class="figure-caption text-center mb-2">
+              <h3>{{location.voiture.marque}} {{location.voiture.modele}}</h3>
+              <h1>{{location.client.nom}} {{location.client.prenom}}</h1> <span style="font-size: 15px;">[ID: {{location.client.username}}]</span>
+            </figcaption>
+          </figure>
+          <div class=" text-center">
+            <div class="col">
+              <span class="myFont">Enlèv.: </span>
+              {{location.lieu_dep}} le {{location.date_debut | date:'dd.LL.y à HH:mm'}}
             </div>
-            <button *ngIf="expired(location.date_fin, location.voiture.etat)"  class="btn btn-secondary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="changeStatus(i)">Changer état du véhicule</button>
+            <div>
+<!--              <span class="myFont">Retour: </span>{{location.lieu_arr}} le <span [ngClass]="expired(location.date_fin, location.voiture.etat) ? 'text-warning fw-bold' : ''">{{location.date_fin | date:'dd.LL.y à HH:mm'}}</span>-->
+              <span class="myFont">Retour: </span>{{location.lieu_arr}} le <span>{{location.date_fin | date:'dd.LL.y à HH:mm'}}</span>
+            </div>
           </div>
+<!--          <button *ngIf="expired(location.date_fin, location.voiture.etat)"  class="btn btn-secondary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#statusModal" (click)="changeStatus(i)">Changer état du véhicule</button>-->
         </div>
+      </div>
     </div>
   </div>
 </div>
@@ -49,7 +57,6 @@
         <label for="input-etat">Etat</label>
         <select id="input-etat" [(ngModel)]="status">
           <option value="PRET">Prêt</option>
-          <option value="PREPARATION">Préparation</option>
           <option value="REPARATION">Réparation</option>
         </select>
       </div>

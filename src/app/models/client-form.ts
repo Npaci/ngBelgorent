@@ -12,5 +12,6 @@ export interface ClientForm {
     lieu_arr: string;
     date_debut: string;
     date_fin: string;
+    etat: string;
   }[]
 }

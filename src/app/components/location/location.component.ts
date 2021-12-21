@@ -46,6 +46,7 @@ export class LocationComponent implements OnInit {
       const v = this.listLocations[this.selectedRent].voiture;
       this.vServ.updateStatus({
         id_voiture: v.id_voiture,
+        VIN: this.vServ.generateVIN(),
         modele_id: 0,
         modele: {
           id_modele: 0,
@@ -81,7 +82,7 @@ export class LocationComponent implements OnInit {
   }
 
   expired(returnDate: string, status: string) : boolean {
-    return ((new Date().valueOf() > new Date(returnDate).valueOf()) && status === "LOUE");
+    return ((new Date().valueOf() > new Date(returnDate).valueOf()) && status === "PREPARATION");
   }
 
   changeStatus(index: number) {

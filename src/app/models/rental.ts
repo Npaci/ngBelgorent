@@ -4,6 +4,7 @@ export interface Rental {
   lieu_arr: string;
   date_debut: string;
   date_fin: string;
+  etat: string;
 
   client: {
     id_client: number;
@@ -15,6 +16,7 @@ export interface Rental {
 
   voiture: {
     id_voiture: number;
+    VIN: string;
     prix: number;
     couleur: string;
     carburant: string;
